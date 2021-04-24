@@ -27,6 +27,11 @@
                         <span class='glyphicon glyphicon-th-list'></span> Fetch data
                     </a>
                 </li>
+                <li [routerLinkActive]='["link-active"]'>
+                  <a [routerLink]='["/hdb-list"]' (click)='collapse()'>
+                    <span class='glyphicon glyphicon-th-list'></span> HDB list
+                  </a>
+                </li>
             </ul>
         </div>
     </div>
