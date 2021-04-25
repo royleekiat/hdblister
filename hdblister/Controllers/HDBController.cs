@@ -16,7 +16,7 @@ namespace hdblister.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> Get()
         {
-            string url = "https://data.gov.sg/api/action/datastore_search?resource_id=42ff9cfe-abe5-4b54-beda-c88f9bb438ee"; // sample url
+            string url = "https://data.gov.sg/api/action/datastore_search?resource_id=42ff9cfe-abe5-4b54-beda-c88f9bb438ee&sort=month%20desc&limit=10000"; // sample url
             using (HttpClient client = new HttpClient())
             {
                 return await client.GetStringAsync(url);
@@ -32,23 +32,27 @@ namespace hdblister.Controllers
 
             foreach (var record in json["result"]["records"])
             {
+
                 hdblist.Add(new HDB
                 {
                     Town = record["town"].ToString(),
                     Flat_type = record["flat_type"].ToString(),
                     Flat_model = record["flat_model"].ToString(),
-                    Floor_area_sqm = record["floor_area_sqm"].ToObject<int>(),
+                    Floor_area_sqm = record["floor_area_sqm"].ToObject<double>(),
                     Street_name = record["street_name"].ToString(),
-                    Resale_price = record["resale_price"].ToObject<int>(),
+                    Resale_price = record["resale_price"].ToObject<double>(),
                     Month = record["month"].ToString(),
                     Remaining_lease = record["remaining_lease"].ToString(),
                     Lease_commence_date = record["lease_commence_date"].ToObject<int>(),
                     Storey_range = record["storey_range"].ToString(),
                     Id = record["_id"].ToObject<int>(),
                     Block = record["block"].ToString()
-                });
+                }) ; 
+                
+                
             }
 
+            System.Diagnostics.Debug.WriteLine("*** Number of transactions: " + hdblist.Count + " ***");
             return hdblist;
 
         }
@@ -59,9 +63,9 @@ namespace hdblister.Controllers
             public string Town { get; set; }
             public string Flat_type { get; set; }
             public string Flat_model { get; set; }
-            public int Floor_area_sqm { get; set; }
+            public double Floor_area_sqm { get; set; }
             public string Street_name { get; set; }
-            public int Resale_price { get; set; }
+            public double Resale_price { get; set; }
             public string Month { get; set; }
             public string Remaining_lease { get; set; }
             public  int Lease_commence_date { get; set; }

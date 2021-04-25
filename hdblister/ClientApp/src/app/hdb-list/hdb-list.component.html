@@ -4,37 +4,38 @@
 
 <p *ngIf="!hdbs"><em>Loading...</em></p>
 
-<table class='table' *ngIf="hdbs">
+<table class='table table-striped table-hover' *ngIf="hdbs">
   <thead>
     <tr>
-      <th>town</th>
-      <th>flat_type</th>
-      <th>flat_model</th>
-      <th>floor_area_sqm</th>
-      <th>street_name</th>
-      <th>resale_price</th>
-      <th>month</th>
-      <th>remaining_lease</th>
-      <th>lease_commence_date</th>
-      <th>storey_range</th>
-      <th>id</th>
-      <th>block</th>
+      <th scope="col">id</th>
+      <th scope="col" sortable="town" (sort)="onSort($event)">Town</th>
+      <th scope="col" sortable="flat_type" (sort)="onSort($event)">Flat type</th>
+      <th scope="col" sortable="flat_model" (sort)="onSort($event)">Flat model</th>
+      <th scope="col" sortable="floor_area_sqm" (sort)="onSort($event)">Floor area (sqm)</th>
+      <th scope="col" sortable="street_name" (sort)="onSort($event)">Street name</th>
+      <th scope="col" sortable="resale_price" (sort)="onSort($event)">Resale price (S$)</th>
+      <th scope="col" sortable="month" (sort)="onSort($event)">Month</th>
+      <th scope="col" sortable="remaining_lease" (sort)="onSort($event)">Remaining lease</th>
+      <th scope="col" sortable="lease_commence_date" (sort)="onSort($event)">Lease commence date</th>
+      <th scope="col" sortable="storey_range" (sort)="onSort($event)">Storey range</th>
+      <th scope="col" sortable="block" (sort)="onSort($event)">Block</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let hdb of hdbs">
+      <th scope="row">{{ hdb.id }}</th>
       <td>{{ hdb.town }}</td>
       <td>{{ hdb.flat_type }}</td>
       <td>{{ hdb.flat_model }}</td>
-      <td>{{ hdb.floor_area_sqm }}</td>
+      <td>{{ hdb.floor_area_sqm | number}}</td>
       <td>{{ hdb.street_name }}</td>
-      <td>{{ hdb.resale_price }}</td>
+      <td>{{ hdb.resale_price | number}}</td>
       <td>{{ hdb.month }}</td>
       <td>{{ hdb.remaining_lease }}</td>
-      <td>{{ hdb.lease_commence_date }}</td>
+      <td>{{ hdb.lease_commence_date | number}}</td>
       <td>{{ hdb.storey_range }}</td>
-      <td>{{ hdb.id }}</td>
       <td>{{ hdb.block }}</td>
     </tr>
   </tbody>
 </table>
+
