@@ -26,11 +26,11 @@ import { NgbdSortableHeader, HdbListComponent } from './hdb-list/hdb-list.compon
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'hdb-list', component: HdbListComponent },
-    ])
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    { path: 'counter', component: CounterComponent },
+    { path: 'fetch-data', component: FetchDataComponent },
+    { path: 'hdb-list', component: HdbListComponent },
+], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
   bootstrap: [AppComponent]
